@@ -12,12 +12,8 @@ import random
 import os
 from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
 
-# ====================================================================
-# BASE UNIVERSE CLASS
-# ====================================================================
 
 class StrangerThingsUniverse:
-    """Base class for all universes with HIGH-QUALITY rendering"""
     
     def __init__(self, name, description, screen_size=(1800, 1200), grid_size=(20, 20)):
         self.name = name
@@ -86,31 +82,25 @@ class StrangerThingsUniverse:
         return np.array(obs)
     
     def _draw_sprite(self, img, sprite, position, size=80, rotation=0, alpha=255):
-        """HIGH-QUALITY sprite drawing with NO quality loss"""
         if sprite is None:
             return
         
         screen_pos = self.grid_to_screen(position)
         
-        # HIGH-QUALITY resize using LANCZOS resampling (best quality)
         resized = sprite.resize((size, size), Image.Resampling.LANCZOS)
         
-        # Rotate if needed (high quality)
         if rotation != 0:
             resized = resized.rotate(-rotation, expand=False, resample=Image.Resampling.BICUBIC)
         
-        # Alpha adjustment
         if alpha < 255:
             resized = resized.copy()
             if resized.mode != 'RGBA':
                 resized = resized.convert('RGBA')
             resized.putalpha(alpha)
         
-        # Center the sprite
         paste_x = screen_pos[0] - size // 2
         paste_y = screen_pos[1] - size // 2
         
-        # Ensure within bounds
         paste_x = max(0, min(paste_x, self.screen_size[0] - size))
         paste_y = max(0, min(paste_y, self.screen_size[1] - size))
         
@@ -121,10 +111,6 @@ class StrangerThingsUniverse:
             img.paste(resized, (paste_x, paste_y))
 
 
-# ====================================================================
-# UNIVERSE 1: FIND WILL IN THE UPSIDE DOWN
-# ====================================================================
-
 class Universe1_FindWill(StrangerThingsUniverse):
     """
     STORY: Eleven must find and rescue Will trapped in the Upside Down
@@ -133,7 +119,7 @@ class Universe1_FindWill(StrangerThingsUniverse):
     
     def __init__(self):
         super().__init__(
-            name="👧 FIND WILL",
+            name=" FIND WILL",
             description="Eleven searches for Will in the Upside Down"
         )
         
@@ -142,7 +128,6 @@ class Universe1_FindWill(StrangerThingsUniverse):
         self._reset_enemies()
         
     def _load_backgrounds(self):
-        """Load Universe 1 background"""
         bg_path = os.path.join(self.assets_dir, 'univ1', 'uni1_bg.png')
         if os.path.exists(bg_path):
             return {'bg': Image.open(bg_path).convert('RGBA')}
@@ -151,7 +136,6 @@ class Universe1_FindWill(StrangerThingsUniverse):
             return {}
     
     def _load_sprites(self):
-        """Load Universe 1 sprites (4 assets)"""
         sprites = {}
         sprite_files = {
             'agent': 'uni1_agent.png',      # Eleven
@@ -164,15 +148,14 @@ class Universe1_FindWill(StrangerThingsUniverse):
             if os.path.exists(path):
                 sprites[key] = Image.open(path).convert('RGBA')
                 img=sprites[key]
-                print(f"✅ Loaded {key}: {filename} | Size: {img.size} | Mode: {img.mode}")
+                print(f" Loaded {key}: {filename} | Size: {img.size} | Mode: {img.mode}")
             else:
-                print(f"⚠️  Missing: {path}")
+                print(f"  Missing: {path}")
                 sprites[key] = None
         
         return sprites
     
     def _reset_enemies(self):
-        """6 Demogorgons wandering the Upside Down"""
         self.enemies = [
             {'pos': np.array([10.0, 10.0]), 'speed': 0.15, 'patrol_center': np.array([10.0, 10.0])},
             {'pos': np.array([15.0, 5.0]), 'speed': 0.12, 'patrol_center': np.array([15.0, 5.0])},
@@ -183,7 +166,6 @@ class Universe1_FindWill(StrangerThingsUniverse):
         ]
     
     def step(self, action):
-        """Execute one step in Universe 1"""
         self.last_action = action
         new_pos = self.agent_pos + action
         new_pos[0] = np.clip(new_pos[0], 0.5, self.grid_size[0] - 0.5)
@@ -291,9 +273,6 @@ class Universe1_FindWill(StrangerThingsUniverse):
         return img_final
 
 
-# ====================================================================
-# UNIVERSE 2: ESCAPE ROOM FROM HAWKINS LAB
-# ====================================================================
 
 class Universe2_EscapeRoom(StrangerThingsUniverse):
     """
@@ -539,11 +518,6 @@ class Universe2_EscapeRoom(StrangerThingsUniverse):
         
         return img_final
 
-
-# ====================================================================
-# UNIVERSE 3: FIGHT VECNA
-# ====================================================================
-
 class Universe3_FightVecna(StrangerThingsUniverse):
     """
     STORY: Will must fight Vecna and save 2 trapped children while dodging projectiles
@@ -588,7 +562,7 @@ class Universe3_FightVecna(StrangerThingsUniverse):
             'child2': 'kid2.png',           # Child 2
             'vecna': 'Vecna.png',           # Vecna boss
             'demo': 'univ3_demo.png',       # Demogorgon
-            'proj1': 'univ3_proj1.png',     # Projectile type 1
+            'proj1': 'univ3_proj1.png',     
             'proj2': 'univ3_proj2.png'      # Projectile type 2
         }
         
@@ -597,7 +571,7 @@ class Universe3_FightVecna(StrangerThingsUniverse):
             if os.path.exists(path):
                 sprites[key] = Image.open(path).convert('RGBA')
             else:
-                print(f"⚠️  Missing: {path}")
+                print(f"  Missing: {path}")
                 sprites[key] = None
         
         return sprites
@@ -845,10 +819,6 @@ class Universe3_FightVecna(StrangerThingsUniverse):
         return img_final
 
 
-# ====================================================================
-# ACTIONS & REGISTRY
-# ====================================================================
-
 ACTIONS = [
     np.array([0.5, 0.0]),   # 0: Right
     np.array([0.0, 0.5]),   # 1: Up
@@ -865,7 +835,7 @@ def get_all_universes():
     ]
 
 if __name__ == "__main__":
-    print("🎮 STRANGER THINGS XODIA - 3 UNIVERSES")
+    print(" STRANGER THINGS XODIA - 3 UNIVERSES")
     print("=" * 60)
     
     universes = get_all_universes()
