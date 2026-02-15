@@ -167,11 +167,11 @@ Submit ONLY your completed Python file (e.g., `team_solution.py`)
 
 ## 🎓 Q-Learning Tips
 
-**Discretization**:
+**Discretization**
 
-**Hyperparameters**:
+**Hyperparameters**
 
-**Exploration**:
+**Exploration**
 
 ---
 
