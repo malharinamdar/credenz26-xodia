@@ -13,9 +13,7 @@ import numpy as np
 import random
 
 
-# ====================================================================
 # UNIVERSE 1: FIND WILL
-# ====================================================================
 
 def discretize_universe1(observation):
     """
@@ -54,9 +52,7 @@ def create_universe1_agent():
     return select_action, update, Q1
 
 
-# ====================================================================
 # UNIVERSE 2: ESCAPE ROOM
-# ====================================================================
 
 def discretize_universe2(observation):
     """
@@ -95,9 +91,7 @@ def create_universe2_agent():
     return select_action, update, Q2
 
 
-# ====================================================================
 # UNIVERSE 3: FIGHT VECNA
-# ====================================================================
 
 def discretize_universe3(observation):
     """
@@ -141,9 +135,7 @@ def create_universe3_agent():
     return select_action, update, Q3
 
 
-# ====================================================================
 # REQUIRED FUNCTIONS
-# ====================================================================
 
 def get_agent_for_universe(universe_name):
     """Router function - DO NOT MODIFY"""
