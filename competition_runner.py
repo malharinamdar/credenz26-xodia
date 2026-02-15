@@ -26,9 +26,7 @@ except ImportError:
 from realm_engine import get_all_universes, ACTIONS
 
 
-# ---------------------------------------------------------------------
 # Agent Loader
-# ---------------------------------------------------------------------
 def load_participant_agent(filepath):
     """Load participant's multi-agent submission"""
     spec = importlib.util.spec_from_file_location("participant_agent", filepath)
@@ -37,9 +35,7 @@ def load_participant_agent(filepath):
     return module
 
 
-# ---------------------------------------------------------------------
-# Dashboard (same as before)
-# ---------------------------------------------------------------------
+# Dashboard
 def create_dashboard(game_frame, universe_name, episode, max_episodes, reward, best_reward):
     if not OPENCV_AVAILABLE:
         return None
@@ -94,9 +90,8 @@ def create_dashboard(game_frame, universe_name, episode, max_episodes, reward, b
     return dashboard
 
 
-# ---------------------------------------------------------------------
 # Training (MULTI-AGENT VERSION)
-# ---------------------------------------------------------------------
+
 def train_universe_live(
     universe,
     select_action,
@@ -193,9 +188,10 @@ def train_universe_live(
     return best_reward, episode_rewards
 
 
-# ---------------------------------------------------------------------
+
+
 # Main Competition Runner (MULTI-AGENT VERSION)
-# ---------------------------------------------------------------------
+
 def run_full_competition(participant_file, episodes_per_universe=200, visualize=False):
     print("\n" + "=" * 80)
     print("STRANGER THINGS XODIA - COMPETITION EVALUATION")
@@ -289,9 +285,7 @@ def run_full_competition(participant_file, episodes_per_universe=200, visualize=
     return results
 
 
-# ---------------------------------------------------------------------
 # CLI
-# ---------------------------------------------------------------------
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run Stranger Things XODIA Competition (Multi-Agent)")
     parser.add_argument("submission", nargs="?", help="Path to participant submission file")
