@@ -153,7 +153,7 @@ xodia-competition/
 └── assets/                   # Game graphics
     ├── univ1/ (4 files)
     ├── univ2/ (3 files)
-    └── univ3/ (6 files)
+    └── univ3/ (8 files)
 ```
 
 ---
