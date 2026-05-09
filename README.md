@@ -10,7 +10,7 @@ Train 3 separate RL agents to navigate Stranger Things universes. Each universe 
 
 ---
 
-## 🌌 The Three Universes
+## The Three Universes
 
 ###  Universe 1: Find Will
 **Mission**: Eleven must rescue Will from the Upside Down
@@ -36,7 +36,7 @@ Train 3 separate RL agents to navigate Stranger Things universes. Each universe 
 
 ---
 
-### 🔬 Universe 2: Escape Room
+### Universe 2: Escape Room
 **Mission**: Escape Hawkins Lab while avoiding Russian guards
 
 **Environment**:
@@ -67,7 +67,7 @@ Train 3 separate RL agents to navigate Stranger Things universes. Each universe 
 
 ---
 
-### ⚡ Universe 3: Fight Vecna
+### Universe 3: Fight Vecna
 **Mission**: Rescue 2 children while avoiding Vecna and projectiles
 
 **Environment**:
