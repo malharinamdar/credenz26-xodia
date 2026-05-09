@@ -1,4 +1,8 @@
-# 🎮 STRANGER THINGS XODIA - PISB Credenz 2026
+# XODIA — Multi-Agent Reinforcement Learning Competition Environment
+
+A custom multi-agent reinforcement learning environment and evaluation framework developed for the PISB Credenz 2026 XODIA challenge.
+
+Inspired by the Stranger Things universe, the competition required participants to train independent RL agents across multiple dynamic environments with distinct objectives, reward functions, and adversarial mechanics.
 
 ## Overview
 
@@ -8,7 +12,7 @@ Train 3 separate RL agents to navigate Stranger Things universes. Each universe 
 
 ## 🌌 The Three Universes
 
-### 👧 Universe 1: Find Will
+###  Universe 1: Find Will
 **Mission**: Eleven must rescue Will from the Upside Down
 
 **Environment**:
